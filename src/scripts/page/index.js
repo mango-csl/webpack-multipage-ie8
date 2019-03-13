@@ -12,8 +12,29 @@ document.querySelector('.g-bd').appendChild(oP);
 
 /* eslint-disable no-undef */
 // 增加事件
-$('.btn').click(function () {
+$('#dialog').click(function () {
     require(['../components/dialog/index.js'], function (dialog) {
         dialog();
     });
 });
+$('#http').click(function () {
+    getTest();
+    // ajax('https://api.douban.com/v2/music/search?q=周杰伦');
+});
+getTest();
+
+function getTest() {
+    $.ajax({
+        type: "post",
+        // url: "http://192.168.2.167:3000/test",
+        url: "/dj_server/test",
+        dataType: "json",
+        success: function (data) {
+            console.log('success = ', data);
+        },
+        error: function (err) {
+            console.log('error = ', err);
+        }
+    });
+}
+
