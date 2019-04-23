@@ -16,7 +16,6 @@ const files = require('../config/files');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const entries = utils.getEntry(files.appPath + '/scripts/page/**/*.js', files.appPath + '/scripts/page/');
 const chunks = Object.keys(entries);
-
 let webpackConfig = {
     // entry: merge({
     //     // layui: `${files.staticPath}/lib/layui/layui.js`,
@@ -35,6 +34,7 @@ let webpackConfig = {
     },
     externals: {
         // 'layui': 'window.layui' // 使用时，依旧用require的方式来使用，webpack不会把它编译进文件里
+        // 'jquery': jQuery
     },
     module: {
         rules: [

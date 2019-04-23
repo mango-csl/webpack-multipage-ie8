@@ -1,4 +1,10 @@
 // 引入css
 require('../../styles/base/index.less');
-/* eslint-disable no-undef */
-$('.g-bd').append('这是一段js生成的文字');
+// todo 首屏加载优化，先渲染主框架
+// 引入css
+document.ready(function () {
+    require(['../../utils/jquery-1.12.4.min'], function (_jquery) {
+        window.$ = _jquery;
+        $('.g-bd').append('这是一段js生成的文字');
+    });
+});

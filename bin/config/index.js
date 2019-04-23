@@ -23,7 +23,7 @@ module.exports = {
         assetsPublicPath: '/', // 'https://cdn.xxxxx.com', // 添加路径前缀,后续cdn扩展
         assetsSubDirectory: 'static', //静态资源指向目录
         notifyOnErrors: true,
-        screw_ie8: dev_config.screw_ie8 || false
+        screw_ie8: dev_config.screw_ie8 || false // 开发环境兼容ie8开关，false 兼容 || true 不兼容
     },
 
     build: {
