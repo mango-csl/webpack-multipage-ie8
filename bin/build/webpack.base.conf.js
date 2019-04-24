@@ -1,7 +1,7 @@
 // 移除node开发环境，webpack警告
 process.noDeprecation = true;
 
-// const path = require('path');
+const path = require('path');
 const webpack = require('webpack');
 const sysConfig = require('../config/index');
 const utils = require('../utils');
@@ -16,6 +16,7 @@ const files = require('../config/files');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const entries = utils.getEntry(files.appPath + '/scripts/page/**/*.js', files.appPath + '/scripts/page/');
 const chunks = Object.keys(entries);
+// let path_jq = path.join(files.staticPath, 'js/jquery-1.12.4.min.js');
 let webpackConfig = {
     // entry: merge({
     //     // layui: `${files.staticPath}/lib/layui/layui.js`,
@@ -30,11 +31,18 @@ let webpackConfig = {
             : sysConfig.dev.assetsPublicPath
     },
     resolve: {
-        extensions: ['.js']
+        extensions: ['.js'],
+        alias: {
+            // 'vue$': 'vue/dist/vue.esm.js',
+            // '@': resolve('src'),
+            // 'jquery': path.join(files.staticPath, 'js/jquery-1.12.4.min.js')
+        }
     },
+    // 配置通过script 引入
     externals: {
         // 'layui': 'window.layui' // 使用时，依旧用require的方式来使用，webpack不会把它编译进文件里
-        // 'jquery': jQuery
+        // 'jquery': path.join(files.staticPath, 'js/jquery-1.12.4.min.js')
+        // 'jquery': 'jQuery'
     },
     module: {
         rules: [
@@ -93,7 +101,7 @@ let webpackConfig = {
     plugins: [
         new Es3ifyPlugin(),
         // new webpack.ProvidePlugin({ // 加载jq
-        //     // $: 'jquery'
+            // $: 'jquery'
         // }),
         // new webpack.ProvidePlugin({
         //     $: 'jquery',

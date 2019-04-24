@@ -60,7 +60,7 @@
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.29.0",
     "http-proxy-middleware": "^0.19.1",
-    "jquery": "^1.12.4",
+    "jquery": "1.12.4",
     "karma": "^4.0.1",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^2.2.0",
