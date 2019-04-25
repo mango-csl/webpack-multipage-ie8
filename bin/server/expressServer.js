@@ -21,12 +21,13 @@ app.use(cors());
 
 // view engine setup
 const {artTemplateOption} = require('../lib/art-template.js');
-app.engine('.html', require('express-art-template'));
+app.engine('html', require('express-art-template'));
 app.set('view options', merge(artTemplateOption, {
     extname: '.html'
 }));
 
 app.set('views', files.tplPath);
+// app.set('views', files.tplPath);
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
@@ -76,7 +77,9 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     console.log(err);
-    res.render('error', {
+    res.render('<h1>{{ message }}</h1>\n' +
+        '<h2>{{ error.status }}</h2>\n' +
+        '<pre>{{ error.stack }}</pre>', {
         message: err.message,
         error: err
     });

@@ -1,10 +1,13 @@
+const files_path = require('../config/files');
 const webTile = '各个页面统一title';
 const commonData = {
     headerList: {
         index: '首页',
         about: '关于',
         login: '登陆'
-    }
+    },
+    assetsPath: files_path.assetsPath,
+    staticPath: files_path.staticPath
 };
 
 const renderData = ((_baseData) => {

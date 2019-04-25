@@ -25,6 +25,8 @@ module.exports = ((filesName) => {
     files.buildPath = path.resolve(rootPath, files.buildName);
     files.faviconPath = path.resolve(rootPath, files.faviconName);
     files.htmlPath = path.resolve(appPath, files.htmlName);
+    files.compiledHtmlPath = path.resolve(rootPath, files.compiledHtmlName);
+    files.assetsPath = path.resolve(appPath, files.assetsName);
     return files;
 })({
     // root: process.cwd(), // 根目录
@@ -36,6 +38,8 @@ module.exports = ((filesName) => {
     // fontName: 'source/font', // 公共字体文件
     // imgName: 'source/img', // 公共图片文件
     // jsName: 'source/js', // 公共脚本文件
+    assetsName: 'assets', // 内置资源文件
+    compiledHtmlName: 'temp_compiledHtml', // 编译后所在页面模板文件
     staticName: 'static', // 静态资源包文件
     tplName: 'temp_views', // 视图模板文件
     testName: 'test' // 测试文件

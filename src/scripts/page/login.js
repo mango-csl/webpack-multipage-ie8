@@ -8,9 +8,9 @@
 // document.ready(function () {
 //     require(['../../utils/jquery-1.12.4.min'], function (_jquery) {
 //         window.$ = _jquery;
-require('../../utils/layui_depend');
-require('../../styles/base/index.less');
-require('../../styles/page/login.less');
+require('../../utils/layui/layui_depend');
+require('../../assets/styles/base/index.less');
+require('../../assets/styles/page/login.less');
 // require('../../utils/layui_extend');
 layui.use('djcpsAlert', function () {
     var djcpsAlert = layui.djcpsAlert;

@@ -1,5 +1,5 @@
 // 引入css
-require('../../styles/base/index.less');
+require('../../assets/styles/base/index.less');
 // todo 首屏加载优化，先渲染主框架
 // 引入css
 // document.ready(function () {

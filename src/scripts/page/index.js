@@ -18,8 +18,8 @@ document.ready(function () {
 //             });
 //         });
 //     }, 'jquery');
-    require('../../styles/base/index.less');
-    require('../../styles/page/index.less');
+    require('../../assets/styles/base/index.less');
+    require('../../assets/styles/page/index.less');
 //     require(['../../utils/jquery-1.12.4.min'], function (_jquery) {
 //         window.$ = _jquery;
 //         // stepone.checkone();
@@ -69,7 +69,7 @@ document.querySelector('.g-bd').appendChild(oP);
 /* eslint-disable no-undef */
 // 增加事件
 $('#dialog').click(function () {
-    require(['../components/dialog/index.js'], function (dialog) {
+    require(['../../components/dialog/index.js'], function (dialog) {
         dialog();
     });
 });

@@ -2,5 +2,6 @@ node_modules
 *.md
 *.scss
 *.less
+*.art
 /dist/
 /src/styles/

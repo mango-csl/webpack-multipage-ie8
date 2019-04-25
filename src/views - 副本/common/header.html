@@ -1,0 +1,9 @@
+<div class="g-hd">
+    <ul class="m-nav">
+        {{each headerList value key}}
+        <li>
+        <a {{if pageNav==key}}class="cur"{{/if}} {{if key =='index'}}href="/"{{else}}href="/{{key}}.html"{{/if}}>{{value}}</a>
+        </li>
+        {{/each}}
+    </ul>
+</div>
