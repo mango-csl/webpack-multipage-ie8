@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  {{include './common/meta'}}
-</head>
-<body>
-{{include './common/header'}}
+{{extend '../../tpl/base.art'}}
+{{block 'content'}}
 <div class="g-bd">
   <h1>djcpsAlert</h1>
   <button class="layui-btn layui-btn-normal alert">djcpsAlert</button>
@@ -149,6 +144,4 @@
     </div>
   </div>
 </div>
-{{include './common/footer'}}
-</body>
-</html>
+{{/block}}

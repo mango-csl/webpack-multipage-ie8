@@ -7,7 +7,8 @@ for (let key of Object.keys(renderData)) {
     let path = key === homePage ? '/' : '/' + key + '.html';
     router.get(path, function (req, res) {
         //change
-        res.render(`${key}.html`, renderData[key]);
+    // , renderData[key]
+        res.render(`${key}.html`);
         // next();
     });
 }

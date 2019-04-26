@@ -1,0 +1,6 @@
+{{extend '../../tpl/base.art'}}
+{{block 'content'}}
+<div class="g-bd">
+    {{include '../../tpl/common/_content'}}
+</div>
+{{/block}}

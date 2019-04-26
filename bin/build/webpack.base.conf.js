@@ -1,7 +1,7 @@
 // 移除node开发环境，webpack警告
 process.noDeprecation = true;
 const isProduction = process.env.NODE_ENV === 'production';
-// const path = require('path');
+const path = require('path');
 const webpack = require('webpack');
 const sysConfig = require('../config/index');
 const utils = require('../utils');
@@ -12,8 +12,20 @@ const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 const Es3ifyPlugin = require('es3ify-webpack-plugin');
 const files = require('../config/files');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const entries = utils.getEntry(files.appPath + '/scripts/page/**/*.js', files.appPath + '/scripts/page/');
-const chunks = Object.keys(entries);
+// const entries = utils.getEntry(files.appPath + '/scripts/page/**/*.js', files.appPath + '/scripts/page/');
+const views = utils.findSync(files.htmlPath);
+const chunks = Object.keys(views);
+
+function file_path(extname) {
+    let result = {};
+    for (let key of chunks) {
+        result[key] = path.join(views[key], key + extname);
+    }
+    return result;
+}
+
+const entries = (file_path)('.js');
+
 // let path_jq = path.join(files.staticPath, 'js/jquery-1.12.4.min.js');
 let webpackConfig = {
     // entry: merge({
@@ -95,11 +107,10 @@ let webpackConfig = {
                     limit: 10000,
                     name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
                 }
+            }, {
+                test: /\.art$/,
+                loader: 'art-template-loader'
             }
-            // , {
-            //     test: /\.art$/,
-            //     loader: 'art-template-loader'
-            // }
         ]
     },
     plugins: [
@@ -120,17 +131,18 @@ let webpackConfig = {
         // new MyPlugin({ options: '' })
     ]
 };
-const tpl_extname = '.html';
-// const renderData = require('../dataSource/renderData');
-const html = utils.getEntry(`${files.compiledHtmlPath}/*${tpl_extname}`, files.compiledHtmlPath + '/');
-const pages = Object.keys(html);
-pages.forEach(function (pathname) {
+// const tpl_extname = '.art';
+const renderData = require('../dataSource/renderData');
+// const html = utils.getEntry(`${files.htmlPath}/*${tpl_extname}`, files.htmlPath + '/');
+// const pages = Object.keys(html);
+const htmls = (file_path)('.art');
+chunks.forEach(function (pathname) {
     pathname.replace('');
     if (pathname in webpackConfig.entry) {
         const conf = {
             // filename: '../' + files.tplName + '/' + pathname + '.html', // 生成的html存放路径，相对于outPutPath
             filename: `${isProduction ? files.buildPath : files.tplPath}/${pathname}.html`, // 生成的html存放路径，相对于outPutPath
-            template: `${files.compiledHtmlPath}/${pathname}${tpl_extname}`, // html模板路径
+            template: htmls[pathname], // html模板路径
             inject: false // js插入的位置，true/'head'/'body'/false
             /*
              * 压缩这块，调用了html-minify，会导致压缩时候的很多html语法检查问题，
@@ -146,15 +158,15 @@ pages.forEach(function (pathname) {
         conf.favicon = files.faviconPath;
         conf.inject = 'body';
         conf.chunks = ['manifest', 'vendors', pathname];
-        // conf.chunks = ['vendors', 'jquery', pathname];
+        conf.chunksSortMode = 'manual';
+        // 两种实现
         // conf.chunksSortMode = function (chunk1, chunk2) {
         //         //     const order = ['vendors', 'jquery', 'layui', pathname];
         //         //     const order1 = order.indexOf(chunk1.names[0]);
         //         //     const order2 = order.indexOf(chunk2.names[0]);
         //         //     return order1 - order2;
         //         // };
-        // conf.context = renderData[pathname];
-        conf.chunksSortMode = 'manual';
+        conf.templateParameters = renderData[pathname];
         conf.hash = true;
         webpackConfig.plugins.push(new HtmlWebpackPlugin(conf));
     }

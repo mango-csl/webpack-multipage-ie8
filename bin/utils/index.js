@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const config = require('../config/index');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const glob = require('glob');
@@ -110,7 +111,25 @@ module.exports = {
             entries[pathname] = formatFn ? formatFn(entry) : [entry];
         }
         return entries;
-    }, createNotifierCallback: () => {
+    },
+    /**
+     * 获取当前目录下的所有文件夹名称和路径
+     * @param startPath
+     * @param formatFn
+     */
+    findSync: function (startPath, formatFn) {
+        let result = {};
+        let files = fs.readdirSync(startPath);
+        files.forEach((val) => {
+            let fPath = path.join(startPath, val);
+            let stats = fs.statSync(fPath);
+            if (stats.isDirectory()) {
+                result[val] = formatFn ? formatFn(fPath) : fPath;
+            }
+        });
+        return result;
+    },
+    createNotifierCallback: () => {
         const notifier = require('node-notifier');
 
         return (severity, errors) => {

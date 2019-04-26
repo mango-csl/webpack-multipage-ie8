@@ -1,0 +1,11 @@
+{{extend '../../tpl/base.art'}}
+{{block 'content'}}
+<div class="g-bd">
+	<input type="button" value="弹窗123" class="btn" id="dialog">
+	<div id="test"></div>
+	<p class="img">
+		<img src="../../assets/imgs/4.png" alt="">
+	</p>
+	{{include '../../tpl/common/_content'}}
+</div>
+{{/block}}

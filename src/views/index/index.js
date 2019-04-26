@@ -19,7 +19,7 @@ document.ready(function () {
 //         });
 //     }, 'jquery');
     require('../../assets/styles/base/index.less');
-    require('../../assets/styles/page/index.less');
+    require('./index.less');
 //     require(['../../utils/jquery-1.12.4.min'], function (_jquery) {
 //         window.$ = _jquery;
 //         // stepone.checkone();

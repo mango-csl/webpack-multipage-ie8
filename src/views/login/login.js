@@ -10,7 +10,7 @@
 //         window.$ = _jquery;
 require('../../utils/layui/layui_depend');
 require('../../assets/styles/base/index.less');
-require('../../assets/styles/page/login.less');
+require('./login.less');
 // require('../../utils/layui_extend');
 layui.use('djcpsAlert', function () {
     var djcpsAlert = layui.djcpsAlert;

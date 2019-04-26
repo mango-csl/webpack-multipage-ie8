@@ -3,13 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"node bin/build/compile/index_dev.js\" \"node bin/server/webpackDevServer\" \"node bin/server/expressServer\"",
+    "start": "concurrently \"node bin/server/webpackDevServer\" \"node bin/server/expressServer\"",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
-    "build:webpack": "cross-env NODE_ENV=production webpack --config bin/build/webpack.prod.conf.js --progress --hide-modules",
-    "node:compile": "node bin/build/compile/index.js",
-    "node:compile_new": "node bin/build/compile/index_dev.js",
-    "build": "npm run build:webpack&&npm run node:compile",
-    "build_new": "npm run node:compile_new&&npm run build:webpack"
+    "build": "cross-env NODE_ENV=production webpack --config bin/build/webpack.prod.conf.js --progress --hide-modules"
   },
   "keywords": [],
   "author": "",
@@ -61,7 +57,7 @@
     "friendly-errors-webpack-plugin": "^1.6.1",
     "glob": "^7.0.0",
     "html-loader": "^0.4.3",
-    "html-webpack-plugin": "^2.29.0",
+    "html-webpack-plugin": "^3.2.0",
     "http-proxy-middleware": "^0.19.1",
     "jquery": "1.12.4",
     "karma": "^4.0.1",

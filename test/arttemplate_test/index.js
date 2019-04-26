@@ -6,6 +6,6 @@ const renderData = require('../../bin/dataSource/renderData');
 // const index_path = path.resolve(files.htmlPath, 'index.html');
 const html = artTemplateRenderFn(Object.assign({
     ...artTemplateOption,
-    filename: path.resolve(files.htmlPath, 'index.art')
-}, {extname: '.art'}), renderData['index']);
+    filename: path.resolve(files.htmlPath, 'about.art')
+}, {extname: '.art'}), renderData['about']);
 console.log(html);
