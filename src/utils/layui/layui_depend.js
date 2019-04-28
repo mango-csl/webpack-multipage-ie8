@@ -17,11 +17,11 @@ require('../jquery');
 
 // require('../../../static/components/layui/css/layui.css');
 require('../../assets/lib/layui/css/layui.css');
-// ../../../static/components/layui/layui.js
+// require('../../../static/components/layui/layui.js');
 require('../../assets/lib/layui/layui');
 layui.config({
     dir: '/static/components/layui/' //layui.js 所在路径（注意，如果是script单独引入layui.js，无需设定该参数。），一般情况下可以无视
-    // dir: '../../package/layui/' //layui.js 所在路径（注意，如果是script单独引入layui.js，无需设定该参数。），一般情况下可以无视
+    // dir: '../../assets/lib/layui/' //layui.js 所在路径（注意，如果是script单独引入layui.js，无需设定该参数。），一般情况下可以无视
 });
 require('./layui_extend');
 

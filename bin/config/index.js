@@ -15,6 +15,11 @@ try {
 // });
 module.exports = {
     dev: {
+        //sourceMap
+        //设置 sourceMap 选项查询参数来引入 source map。
+        //例如 extract-text-webpack-plugin 能够处理它们。
+        //默认情况下不启用它们，因为它们会导致运行时的额外开销，并增加了 bundle 大小 (JS source map 不会)。
+        // 此外，相对路径是错误的，你需要使用包含服务器 URL 的绝对公用路径。!!
         cssSourceMap: true,
         host: '0.0.0.0',
         serverPort: 2082,
