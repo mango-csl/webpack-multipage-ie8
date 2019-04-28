@@ -12,7 +12,7 @@ const cssLoaders = function (options) {
     const cssLoader = {
         loader: 'css-loader',
         options: {
-            sourceMap: options.sourceMap,
+            sourceMap: options.sourceMap
             // url: false
         }
     };
