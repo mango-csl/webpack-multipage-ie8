@@ -1,0 +1,44 @@
+// css定义变量
+// :root {
+// 	--normalColor: yellow;
+// }
+:local(.dialog){
+	behavior: url(/static/PIE.htc);
+	position: fixed;
+	display: block;
+	left: 0;top:0;right:0;bottom:0;
+	background: rgba(0,0,0,.5);
+	-pie-background: rgba(249, 86, 48, 0.5);
+	user-select: none;
+	.close{
+		position: absolute;
+		top:20px;
+		right: 20px;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		text-align: center;
+		line-height: 40px;
+		font-size: 40px;
+		color:#666;
+		background: rgba(255,255,255,.8);
+		-pie-background: rgba(61, 87, 255, 0.8);
+		cursor: pointer;
+		behavior: url(/static/PIE.htc);
+		&__txt {
+			// 使用变量
+			// background: var(--normalColor);
+			color: blue;
+			&--left {
+				color: red;
+			}
+		}
+	}
+	.img{
+		position: absolute;
+		margin:auto;
+		top:0;right: 0;bottom:0;left: 0;
+		max-width: 90%;
+		max-height: 90%;
+	}
+}

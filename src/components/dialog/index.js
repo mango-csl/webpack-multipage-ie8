@@ -1,17 +1,20 @@
 // 加载模块css
-require('./css/dialog.css');
+var style = require('./css/dialog.less');
 // 加载模板
 var html = require('./tmpl/dialog.html');
-
 /* eslint-disable no-undef */
-module.exports = function () {
+module.exports = function (param, callback) {
     var $dialog = $(html).clone();
+    console.log(param);
+    // debugger;
+    // setTimeout(function() {
+    //     // 改变css变量的值
+    //     document.documentElement.style.setProperty('--normalColor', 'blue');
+    // }, 3000);
+    $dialog.addClass(style.dialog);
     $dialog.find('.close').on('click', function () {
-        // todo fadeOut第一次失效？？？
-        $dialog.fadeOut(function () {
-            $(this).remove();
-        });
+        $dialog.remove();
+        typeof callback === 'function' && callback('bbb');
     });
     $('body').append($dialog);
-    $dialog.fadeIn();
 };

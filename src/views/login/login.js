@@ -11,7 +11,7 @@
 require('../../utils/layui/layui_depend');
 require('../../assets/styles/base/index.less');
 require('./login.less');
-// require('../../utils/layui_extend');
+// require('../../utils/layui/layui_depend');
 layui.use('djcpsAlert', function () {
     var djcpsAlert = layui.djcpsAlert;
     $('.alert').click(function () {
