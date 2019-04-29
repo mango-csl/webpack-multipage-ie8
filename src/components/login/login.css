@@ -1,0 +1,15 @@
+.main{
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00FF00;
+  background-image: linear-gradient(90deg, #00FF00, #00FFFF);
+}
+.login-container{
+  user-select: none;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

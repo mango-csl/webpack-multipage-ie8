@@ -4,7 +4,8 @@ const commonData = {
     headerList: {
         index: '首页',
         about: '关于',
-        login: '登陆'
+        login: '登陆',
+        spa: '单页'
     },
     assetsPath: files_path.assetsPath,
     staticPath: files_path.staticPath
@@ -35,6 +36,10 @@ const renderData = ((_baseData) => {
     'login': {
         title: '登陆 - ' + webTile,
         pageNav: 'login'
+    },
+    'spa': {
+        title: '单页 - ' + webTile,
+        pageNav: 'spa'
     }
 });
 module.exports = renderData;

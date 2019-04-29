@@ -1,0 +1,15 @@
+{{extend '../../tpl/base.art'}}
+{{block 'content'}}
+<div class="g-bd">
+  <ul class="layui-nav" lay-filter="">
+    <li class="layui-nav-item layui-this"><a href="#1">最新活动</a></li>
+    <li class="layui-nav-item"><a href="#2">产品</a></li>
+    <li class="layui-nav-item"><a href="#3">大数据</a></li>
+    <li class="layui-nav-item"><a href="#4">社区</a></li>
+  </ul>
+  <div id="title">弹窗</div>
+  <div id="content">
+
+  </div>
+</div>
+{{/block}}
