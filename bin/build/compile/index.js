@@ -1,3 +1,6 @@
+/**
+ * 废弃
+ */
 const {artTemplateRenderFn} = require('../../lib/art-template');
 const fs = require('fs');
 const utils = require('../../utils/index');

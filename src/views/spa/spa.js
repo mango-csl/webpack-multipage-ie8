@@ -1,5 +1,3 @@
-// todo 首屏加载优化，先渲染主框架
-// 引入css
 require('../../assets/styles/base/index.less');
 require('../../utils/layui/layui_depend');
 layui.use('element', function() {
@@ -9,6 +7,11 @@ var Data = {};
 /* eslint-disable no-undef */
 // 增加事件
 location.hash = '#1'; //初始地址
+//todo issue：当前页刷新时，无法进入 $(window).on('hashchange', callback) callback方法
+// 市面上应该有基于IE8的路由实现方案
+
+// todo 懒加载的实现,在进入新页签时,才加载当前页签所需资源.
+// 思路:webpack require写法的问题? 统一分装到route组件中?
 $(window).on('hashchange', function () {
     var firstIndexSharp = location.hash.indexOf('#');
     var hash = location.hash.substring(firstIndexSharp + 1);
@@ -16,7 +19,7 @@ $(window).on('hashchange', function () {
     $('#title').text(chineseHash);
     switch (chineseHash) {
         case '1':
-            require(['../../components/login/index.js'], function (login) {
+            require(['./login/index.js'], function (login) {
                 var ss = function (val) {
                     console.log(val);
                 };
@@ -40,14 +43,14 @@ $(window).on('hashchange', function () {
             var content = $('#content');
             content.html(html);
             var echarts = require('echarts/lib/echarts');
-// 引入柱状图
+            // 引入柱状图
             require('echarts/lib/chart/bar');
-// 引入提示框和标题组件
+            // 引入提示框和标题组件
             require('echarts/lib/component/tooltip');
             require('echarts/lib/component/title');
-// 基于准备好的dom，初始化echarts实例
+            // 基于准备好的dom，初始化echarts实例
             var myChart = echarts.init(document.getElementById('main'));
-// 绘制图表
+            // 绘制图表
             myChart.setOption({
                 title: {
                     text: 'ECharts 入门示例'
@@ -65,7 +68,7 @@ $(window).on('hashchange', function () {
             });
             break;
         case '4':
-            require(['../../components/upload/index.js'], function (upload) {
+            require(['./upload/index.js'], function (upload) {
                 upload();
             });
             break;
@@ -73,20 +76,3 @@ $(window).on('hashchange', function () {
             break;
     }
 });
-getTest();
-
-function getTest() {
-    $.ajax({
-        type: "post",
-        // url: "http://192.168.2.167:3000/test",
-        url: "/dj_server/test",
-        dataType: "json",
-        success: function (data) {
-            console.log('success = ', data);
-        },
-        error: function (err) {
-            console.log('error = ', err);
-        }
-    });
-}
-

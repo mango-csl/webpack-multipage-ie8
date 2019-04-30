@@ -34,7 +34,7 @@ module.exports = {
     build: {
         assetsPublicPath: '/',
         assetsSubDirectory: 'static', //静态资源指向目录
-        bundleAnalyzerReport: false, //会打断npm && npm 这类npm指令继续执行
+        bundleAnalyzerReport: true, //会打断npm && npm 这类npm指令继续执行
         // Gzip off by default as many popular static hosts such as
         // Surge or Netlify already gzip all static assets for you.
         // Before setting to `true`, make sure to:
