@@ -23,13 +23,11 @@ function file_path(extname) {
 }
 
 const entries = (file_path)('.js');
-//todo  将module。js  变为global
 const htmlPlugin_chunks = ['manifest', 'vendors', 'common'];
 // const htmlPlugin_chunks = ['manifest', 'vendors'];
 let webpackConfig = {
     entry: Object.assign(entries, {
-        // todo 可以把公共css也加入到这里面
-        common: ['utils']
+        common: ['utils', 'baseCss']
     }),
     // entry: entries,
     output: {
@@ -39,14 +37,6 @@ let webpackConfig = {
             ? sysConfig.build.assetsPublicPath
             : sysConfig.dev.assetsPublicPath
     },
-    // resolve: {
-    //     extensions: ['.js'],
-    //     alias: {
-    //         // 'vue$': 'vue/dist/vue.esm.js',
-    //         // '@': resolve('src'),
-    //         // 'jquery': path.join(files.staticPath, 'js/jquery-1.12.4.min.js')
-    //     }
-    // },
     resolve: require('./modules/resolve'),
     // 关联通过script 引入的资源
     externals: {},

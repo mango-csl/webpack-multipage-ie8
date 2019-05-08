@@ -23,7 +23,6 @@
 //             });
 //         });
 //     }, 'jquery');
-require('../../assets/styles/base/index.less');
 require('./index.less');
 require('../../utils/layui/layui_depend');
 
