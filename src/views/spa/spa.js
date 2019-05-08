@@ -38,7 +38,7 @@ $(window).on('hashchange', function () {
             });
             break;
         case '3':
-            require(['echarts/lib/echarts'], function (echarts) {
+            require(['echarts/lib/echarts', 'zrender'], function (echarts) {
                 var html = '<div id="main" style="width: 800px;height: 600px"></div>';
                 var content = $('#content');
                 content.html(html);

@@ -14,7 +14,7 @@ const proxy = require('http-proxy-middleware');
 const cors = require('cors');
 
 const app = express();
-// const isDev = app.get('env') === 'development';
+const isDev = app.get('env') === 'development';
 
 //cors将设置access-control-allow-origin:*,解决跨域问题( express proxy)
 app.use(cors());

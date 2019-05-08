@@ -23,9 +23,15 @@ function file_path(extname) {
 }
 
 const entries = (file_path)('.js');
-
+//todo  将module。js  变为global
+const htmlPlugin_chunks = ['manifest', 'vendors', 'common'];
+// const htmlPlugin_chunks = ['manifest', 'vendors'];
 let webpackConfig = {
-    entry: entries,
+    entry: Object.assign(entries, {
+        // todo 可以把公共css也加入到这里面
+        common: ['utils']
+    }),
+    // entry: entries,
     output: {
         path: files.buildPath,
         filename: '[name].js',
@@ -33,21 +39,23 @@ let webpackConfig = {
             ? sysConfig.build.assetsPublicPath
             : sysConfig.dev.assetsPublicPath
     },
-    resolve: {
-        extensions: ['.js'],
-        alias: {
-            // 'vue$': 'vue/dist/vue.esm.js',
-            // '@': resolve('src'),
-            // 'jquery': path.join(files.staticPath, 'js/jquery-1.12.4.min.js')
-        }
-    },
+    // resolve: {
+    //     extensions: ['.js'],
+    //     alias: {
+    //         // 'vue$': 'vue/dist/vue.esm.js',
+    //         // '@': resolve('src'),
+    //         // 'jquery': path.join(files.staticPath, 'js/jquery-1.12.4.min.js')
+    //     }
+    // },
+    resolve: require('./modules/resolve'),
     // 关联通过script 引入的资源
     externals: {},
     module: {
         rules: [
             {
                 test: /\.js$/,
-                exclude: /(node_modules)/,
+                // exclude: /(node_modules)/,
+                exclude: [files.staticPath],
                 //include: path.join(projectDirname, 'src'),
                 include: [files.appPath],
                 use: {
@@ -55,11 +63,11 @@ let webpackConfig = {
                     /*options: {
                         presets: ['env']
                     }*/
-                    options: {
-                        presets: ['env', 'es2015-loose']
-                        //presets: ['env'],
-                        //plugins: ['transform-runtime', 'proxy']
-                    }
+                    // options: {
+                    //     presets: ['env', 'es2015-loose']
+                    //     //presets: ['env'],
+                    //     //plugins: ['transform-runtime', 'proxy']
+                    // }
                 }
             },
             {
@@ -122,16 +130,16 @@ let webpackConfig = {
         // new MyPlugin({ options: '' })
     ]
 };
-const renderData = require('../dataSource/renderData');
+const renderData = require('../dataSource/renderData')({isProduction: isProduction});
 const htmls = (file_path)('.art');
 chunks.forEach(function (pathname) {
     pathname.replace('');
     if (pathname in webpackConfig.entry) {
-        const conf = {
+        webpackConfig.plugins.push(new HtmlWebpackPlugin({
             // filename: '../' + files.tplName + '/' + pathname + '.html', // 生成的html存放路径，相对于outPutPath
             filename: `${isProduction ? files.buildPath : files.tplPath}/${pathname}.html`, // 生成的html存放绝对路径
             template: htmls[pathname], // html模板路径
-            inject: false, // js插入的位置，true/'head'/'body'/false
+            // inject: false, // js插入的位置，true/'head'/'body'/false
             /*
              * 压缩这块，调用了html-minify，会导致压缩时候的很多html语法检查问题，
              * 如在html标签属性上使用{{...}}表达式，很多情况下并不需要在此配置压缩项，
@@ -143,22 +151,21 @@ chunks.forEach(function (pathname) {
                 collapseWhitespace: true, //删除空白符与换行符
                 minifyJS: true,
                 minifyCSS: true
-            }
-        };
-        conf.favicon = files.faviconPath;
-        conf.inject = 'body';
-        conf.chunks = ['manifest', 'vendors', pathname];
-        conf.chunksSortMode = 'manual';
-        // 两种实现
-        // conf.chunksSortMode = function (chunk1, chunk2) {
-        //         //     const order = ['vendors', 'jquery', 'layui', pathname];
-        //         //     const order1 = order.indexOf(chunk1.names[0]);
-        //         //     const order2 = order.indexOf(chunk2.names[0]);
-        //         //     return order1 - order2;
-        //         // };
-        conf.templateParameters = renderData[pathname];
-        conf.hash = true;
-        webpackConfig.plugins.push(new HtmlWebpackPlugin(conf));
+            },
+            favicon: files.faviconPath,
+            inject: 'body', // js插入的位置，'head'||'body'
+            chunks: [...htmlPlugin_chunks, pathname],
+            chunksSortMode: 'manual',
+            // 两种实现
+            // chunksSortMode = function (chunk1, chunk2) {
+            //         //     const order = ['vendors', 'jquery', 'layui', pathname];
+            //         //     const order1 = order.indexOf(chunk1.names[0]);
+            //         //     const order2 = order.indexOf(chunk2.names[0]);
+            //         //     return order1 - order2;
+            //         // };
+            templateParameters: renderData[pathname],
+            hash: true
+        }));
     }
 });
 

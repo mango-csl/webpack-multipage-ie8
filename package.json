@@ -19,6 +19,8 @@
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "echarts": "^4.2.1",
+    "es5-shim": "^4.5.13",
+    "es6-promise": "^4.2.6",
     "express": "^4.16.4",
     "http-errors": "~1.6.2",
     "http-proxy": "^1.17.0",

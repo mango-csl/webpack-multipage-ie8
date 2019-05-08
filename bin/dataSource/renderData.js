@@ -10,10 +10,9 @@ const commonData = {
     assetsPath: files_path.assetsPath,
     staticPath: files_path.staticPath
 };
-
-const renderData = ((_baseData) => {
+const renderData = (option = {isProduction: false}) => ((_baseData) => {
     for (let key of Object.keys(_baseData)) {
-        _baseData[key] = Object.assign({}, commonData, _baseData[key]);
+        _baseData[key] = Object.assign({}, commonData, _baseData[key], option);
     }
     return _baseData;
 })({
@@ -42,4 +41,5 @@ const renderData = ((_baseData) => {
         pageNav: 'spa'
     }
 });
+
 module.exports = renderData;

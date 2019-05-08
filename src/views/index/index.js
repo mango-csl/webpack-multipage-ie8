@@ -27,8 +27,6 @@ require('../../assets/styles/base/index.less');
 require('./index.less');
 require('../../utils/layui/layui_depend');
 
-require('../../utils/jquery');
-
 var oP = document.createElement('p');
 oP.className = 'text';
 oP.innerHTML = '这是由js生成的一句话';
