@@ -127,7 +127,7 @@ chunks.forEach(function (pathname) {
     if (pathname in webpackConfig.entry) {
         webpackConfig.plugins.push(new HtmlWebpackPlugin({
             // filename: '../' + files.tplName + '/' + pathname + '.html', // 生成的html存放路径，相对于outPutPath
-            filename: `${isProduction ? files.buildPath : files.tplPath}/${pathname}.html`, // 生成的html存放绝对路径
+            filename: `${isProduction ? files.buildPath : files.buildPath}/${pathname}.html`, // 生成的html存放绝对路径
             template: htmls[pathname], // html模板路径
             // inject: false, // js插入的位置，true/'head'/'body'/false
             /*

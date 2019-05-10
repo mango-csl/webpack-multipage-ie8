@@ -1,7 +1,7 @@
 {{extend '../../tpl/base.art'}}
 {{block 'content'}}
 <div class="g-bd">
-	<input type="button" value="弹窗" class="btn" id="dialog">
+	<input type="button" value="弹窗123" class="btn" id="dialog">
   <input type="button" value="http" class="btn" id="http">
 		<input type="button" value="layui弹窗" class="btn" id="layuiDialog">
 		<input type="button" value="layui确认框" class="btn" id="layuiConfirm">
